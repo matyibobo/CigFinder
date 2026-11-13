@@ -3,6 +3,11 @@ export type CharacterType = {
     Picture: string,
     Strength: number,
     Health: number,
-    Ultimate: string,
+    Defense: number,
+    Dexterity: number,
+    Ultimate: {
+        id: number,
+        name: string
+    },
     Level: number
 }
