@@ -1,8 +1,10 @@
+import BattleField from "./pages/BattleField"
+
 const App = () => {
   return (
     <div>
       <h1>CigFinder</h1>
-      <img src="images.jpg" alt="" />
+      <BattleField/>
     </div>
   )
 }
