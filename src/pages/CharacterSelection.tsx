@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { type CharacterType } from '../types/CharacterType'
 const CharacterSelection = () => {
     const [character, setCharacter] = useState<CharacterType>()
@@ -44,7 +44,9 @@ const CharacterSelection = () => {
         })
     },[])
   return (
-    <div>{}</div>
+    <div>
+        <img src={character?.Picture} alt="" />
+    </div>
   )
 }
 
