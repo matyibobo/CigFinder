@@ -1,53 +1,28 @@
-import { useEffect, useState } from 'react'
-import { type CharacterType } from '../types/CharacterType'
+import { useEffect } from 'react'
+import { useCharacterStore } from '../store/CharacterStore'
+
 const CharacterSelection = () => {
-    const [character, setCharacter] = useState<CharacterType>()
-    useEffect(()=>{
-        fetch("https://randomuser.me/api/")
-        .then(res => res.json())
-        .then(data => {
-            const age = data.results[0].dob.age
-            const strength = Math.round(age/10)*2
-            const health = 100 - Math.round(age/2)
-            const defense = 2 + Math.round(age/20)
+    const characters = useCharacterStore((s) => s.characters)
+    const loadCharacters = useCharacterStore((s) => s.loadCharacters)
 
-            const number = data.results[0].location.street.number%3
-            let ultName = "";
-            switch (number) {
-                case 0:
-                    ultName = "Super Strength"
-                    break;
-                case 1:
-                    ultName = "Heal"
-                    break;
-                case 2:
-                    ultName = "Defense Up"
-                    break;
-            
-                default:
-                    break;
-            }
+    useEffect(() => {
+        loadCharacters().catch((error: unknown) => {
+            console.error('Failed to load characters:', error)
+        })
+    }, [loadCharacters])
 
-            setCharacter({
-            Name: `${data.results[0].name.first} ${data.results[0].name.last}`,
-            Picture: data.results[0].picture.large,
-            Strength: strength,
-            Health: health,
-            Defense: defense,
-            Dexterity: Math.round(age/5),
-            Ultimate: {
-                id: number,
-                name: ultName
-            },
-            Level: age / 2
-        })
-        })
-    },[])
-  return (
-    <div>
-        <img src={character?.Picture} alt="" />
-    </div>
-  )
+    return (
+        <div>
+            {characters.map((character, index) => (
+                <article key={`${character.Name}-${index}`}>
+                    <p>{index}</p>
+                    <img src={character.Picture} alt={character.Name} />
+                    <h2>{character.Name}</h2>
+                    <p>{character.Ultimate.name}</p>
+                </article>
+            ))}
+        </div>
+    )
 }
 
 export default CharacterSelection
