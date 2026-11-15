@@ -2,21 +2,7 @@ import { useCharacterStore } from '../store/CharacterStore'
     //const [playerTurn, setPlayerTurn] = useState(true)
     //const [isDefending, setIsDefending] = useState(false)
 
-    /*function Attack() {
-        setEnemy(prev => ({
-            ...prev,
-            Health: enemy.Health - player.Strength
-        }))
-        setPlayerTurn(!playerTurn)
-    }
-    function Defense() {
-      setIsDefending(true)
-        setPlayer(prev => ({
-            ...prev,
-            Health: player.Health + player.Defense
-        }))
-        setPlayerTurn(!playerTurn)
-    }
+    /*
 
     useEffect(()=>{
         if (playerTurn) return
