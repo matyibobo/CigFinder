@@ -14,7 +14,8 @@ type RoundStore = {
     roundOver: () => void,
     playerHpSet: (value: number) => void,
     enemyHpSet: (value: number) => void,
-    levelUp : () => void
+    enemyLevelUp : () => void
+    playerLevelUp : () => void
 }
 export const useRoundStore = create<RoundStore>()((set) => ({
     player: {
@@ -81,7 +82,16 @@ export const useRoundStore = create<RoundStore>()((set) => ({
             Health: Math.max(0, s.player.Health + value)
         }
     })),
-    levelUp: () => set((s) => ({
+    enemyLevelUp: () => set((s) => ({
+        enemy: {
+            ...s.enemy,
+            Health: s.enemy.Health + 5,
+            Strength: s.enemy.Strength + 2,
+            Defense: s.enemy.Defense + 1,
+            Level: Math.min(50, s.enemy.Level + 1)
+        }
+    })),
+    playerLevelUp: () => set((s) => ({
         player: {
             ...s.player,
             Health: s.player.Health + 5,

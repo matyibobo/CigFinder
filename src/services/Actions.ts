@@ -28,7 +28,7 @@ export function Ultimate(id: number, strength: number, level: number) {
         
         case 2:
             if (level < 50) {
-                state.levelUp()
+                state.playerTurn ? state.playerLevelUp() : state.enemyLevelUp()
                 state.turnOver()   
             }
             break;
