@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { getCharacter } from "../types/CharacterType";
-import { Stats, Ultimate } from "../services/StatCalc";
+import { Stats, UltimateCalc } from "../services/StatCalc";
 
 export type Character = {
     Name: string,
@@ -50,7 +50,7 @@ export const useCharacterStore = create<CharacterStore>()((set) => ({
                 Health: ageStats.health,
                 Defense: ageStats.defense,
                 Dexterity: ageStats.dexterity,
-                Ultimate: Ultimate(data.location.street.number),
+                Ultimate: UltimateCalc(data.location.street.number),
                 Level: ageStats.level
             };
         });

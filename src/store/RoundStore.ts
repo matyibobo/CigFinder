@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { useCharacterStore, type Character } from "./CharacterStore";
-import { Stats, Ultimate } from "../services/StatCalc";
+import { Stats, UltimateCalc } from "../services/StatCalc";
 import { getCharacter } from "../types/CharacterType";
 
 type RoundStore = {
@@ -13,7 +13,8 @@ type RoundStore = {
     turnOver: () => void,
     roundOver: () => void,
     playerHpSet: (value: number) => void,
-    enemyHpSet: (value: number) => void
+    enemyHpSet: (value: number) => void,
+    levelUp : () => void
 }
 export const useRoundStore = create<RoundStore>()((set) => ({
     player: {
@@ -60,7 +61,7 @@ export const useRoundStore = create<RoundStore>()((set) => ({
             Health: ageStats.health,
             Defense: ageStats.defense,
             Dexterity: ageStats.dexterity,
-            Ultimate: Ultimate(data.location.street.number),
+            Ultimate: UltimateCalc(data.location.street.number),
             Level: ageStats.level
         };
 
@@ -80,4 +81,13 @@ export const useRoundStore = create<RoundStore>()((set) => ({
             Health: Math.max(0, s.player.Health + value)
         }
     })),
+    levelUp: () => set((s) => ({
+        player: {
+            ...s.player,
+            Health: s.player.Health + 5,
+            Strength: s.player.Strength + 2,
+            Defense: s.player.Defense + 1,
+            Level: Math.min(50, s.player.Level + 1)
+        }
+    }))
 }));

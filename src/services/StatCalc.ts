@@ -7,7 +7,7 @@ export function Stats(age: number) {
 
     return {strength, health, defense, dexterity, level}
 }
-export function Ultimate(id: number) {
+export function UltimateCalc(id: number) {
     id = id%3
     let name = ""
     switch (id) {

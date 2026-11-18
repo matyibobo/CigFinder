@@ -1,12 +1,12 @@
-import { Attack, Defend } from '../services/Actions'
+import { Attack, Defend, Ultimate } from '../services/Actions'
 import type { Character } from '../store/CharacterStore'
 
 const ActionWindow = (prop:Character) => {
   return (
     <div>
-        <button onClick={() => Attack(prop.Strength ? prop.Strength : 0)}>Attack</button>
-        <button onClick={() => Defend(prop.Defense ? prop.Defense : 0)}>Defend</button>
-        <button>{prop.Ultimate.name}</button>
+        <button onClick={() => Attack(prop.Strength)}>Attack</button>
+        <button onClick={() => Defend(prop.Defense)}>Defend</button>
+        <button onClick={() => Ultimate(prop.Ultimate.id, prop.Strength, prop.Level)}>{prop.Ultimate.name}</button>
     </div>
   )
 }
