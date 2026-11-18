@@ -6,10 +6,11 @@ const CharacterSelection = () => {
     const characters = useCharacterStore((s) => s.characters)
     const loadCharacters = useCharacterStore((s) => s.loadCharacters)
     const selectPlayer = useRoundStore((s) => s.selectPlayer)
+    const loadEnemy = useRoundStore((s) => s.loadEnemy)
 
     function selectP(id: number) {
         selectPlayer(id)
-
+        loadEnemy()
     }
 
     useEffect(() => {

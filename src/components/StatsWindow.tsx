@@ -4,8 +4,8 @@ const StatsWindow = (prop:Character) => {
   return (
     <div>
         <img src={prop.Picture} alt={prop.Name} />
-        <h2>Name: {prop.Name}</h2>
-        <p>Level: {prop.Level}</p>
+        <h2><b>{prop.Name}</b></h2>
+        <p><b>Level: {prop.Level}</b></p>
         <p><b>Health: {prop.Health}</b></p>
         <p>Strength: {prop.Strength}</p>
         <p>Defense: {prop.Defense}</p>
