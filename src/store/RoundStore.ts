@@ -8,14 +8,12 @@ type RoundStore = {
     enemy: Character,
     playerTurn: boolean,
     round: boolean,
-    selectPlayer: (id: number) => void 
+    selectPlayer: (id: number) => void,
     loadEnemy: () => Promise<void>,
     turnOver: () => void,
     roundOver: () => void,
-    attack: (value: number) => void,
-    damage: (value: number) => void,
-    defendEnemy: (value: number) => void,
-    defendPlayer: (value: number) => void,
+    playerHpSet: (value: number) => void,
+    enemyHpSet: (value: number) => void
 }
 export const useRoundStore = create<RoundStore>()((set) => ({
     player: {
@@ -70,25 +68,13 @@ export const useRoundStore = create<RoundStore>()((set) => ({
     },
     turnOver: () => set((s) => ({ playerTurn: !s.playerTurn })),
     roundOver: () => set((s) => ({ round: !s.round })),
-    attack: (value) => set((s) => ({
-        enemy: {
-            ...s.enemy,
-            Health: Math.max(0, s.enemy.Health - value)
-        }
-    })),
-    damage: (value) => set((s) => ({
-        player: {
-            ...s.player,
-            Health: Math.max(0, s.player.Health - value)
-        }
-    })),
-    defendEnemy: (value) => set((s) => ({
+    enemyHpSet: (value) => set((s) => ({
         enemy: {
             ...s.enemy,
             Health: Math.max(0, s.enemy.Health + value)
         }
     })),
-    defendPlayer: (value) => set((s) => ({
+    playerHpSet: (value) => set((s) => ({
         player: {
             ...s.player,
             Health: Math.max(0, s.player.Health + value)

@@ -1,18 +1,16 @@
 import { useRoundStore } from "../store/RoundStore"
 
 const playerTurn = useRoundStore((s) => s.playerTurn)
-const attack = useRoundStore((s) => s.attack)
-const damage = useRoundStore((s) => s.damage)
-const defendEnemy = useRoundStore((s) => s.defendEnemy)
-const defendPlayer = useRoundStore((s) => s.defendPlayer)
+const enemyHpSet = useRoundStore((s) => s.enemyHpSet)
+const playerHpSet = useRoundStore((s) => s.playerHpSet)
 const turnOver = useRoundStore((s) => s.turnOver)
 
 export function Attack(value: number) {
-    playerTurn ? attack(value) : damage(value)
-    turnOver
+    playerTurn ? enemyHpSet(-value) : playerHpSet(-value)
+    turnOver()
 }
 
 export function Defend(value: number) {
-    playerTurn ? defendPlayer(value) : defendEnemy(value)
-    turnOver
+    playerTurn ? playerHpSet(value) : enemyHpSet(value)
+    turnOver()
 }
