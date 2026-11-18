@@ -7,7 +7,8 @@ type RoundStore = {
     player: Character,
     enemy: Character,
     playerTurn: boolean,
-    round: boolean
+    round: boolean,
+    selectPlayer: (id: number) => void 
     loadEnemy: () => Promise<void>,
     turnOver: () => void,
     roundOver: () => void,
@@ -17,7 +18,19 @@ type RoundStore = {
     defendPlayer: (value: number) => void,
 }
 export const useRoundStore = create<RoundStore>()((set) => ({
-    player: useCharacterStore((s) => s.playerCharacter),
+    player: {
+        Name: "",
+        Picture: "",
+        Strength: 0,
+        Health: 0,
+        Defense: 0,
+        Dexterity: 0,
+        Ultimate: {
+            id: 0,
+            name: ""
+        },
+        Level: 0
+    },
     enemy: {
         Name: "",
         Picture: "",
@@ -33,6 +46,7 @@ export const useRoundStore = create<RoundStore>()((set) => ({
     },
     playerTurn: true,
     round: true,
+    selectPlayer:(id) => set((s) => ({player: s.player = useCharacterStore.getState().characters[id]})),
     loadEnemy: async () => {
         const response = await getCharacter(1);
         const data = response.results[0];

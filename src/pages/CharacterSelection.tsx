@@ -1,13 +1,15 @@
 import { useEffect } from 'react'
 import { useCharacterStore } from '../store/CharacterStore'
+import { useRoundStore } from '../store/RoundStore'
 
 const CharacterSelection = () => {
     const characters = useCharacterStore((s) => s.characters)
     const loadCharacters = useCharacterStore((s) => s.loadCharacters)
-    const selectPlayer = useCharacterStore((s) => s.selectPlayer)
+    const selectPlayer = useRoundStore((s) => s.selectPlayer)
 
     function selectP(id: number) {
         selectPlayer(id)
+
     }
 
     useEffect(() => {

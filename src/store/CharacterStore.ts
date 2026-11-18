@@ -19,7 +19,7 @@ export type Character = {
 type CharacterStore = {
     characters: Character[],
     playerCharacter: Character,
-    loadCharacters: () => Promise<void>
+    loadCharacters: () => Promise<void>,
     selectPlayer: (id: number) => void 
 }
 
