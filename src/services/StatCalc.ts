@@ -2,7 +2,7 @@ export function Stats(age: number) {
     let strength = Math.round(age/10)*2
     let health = 100 - Math.round(age/2)
     let defense = 2 + Math.round(age/20)
-    let dexterity = Math.round(age/5)
+    let dexterity = Math.round(age/7)
     let level = Math.round(age/2)
 
     return {strength, health, defense, dexterity, level}

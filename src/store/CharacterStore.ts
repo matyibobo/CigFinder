@@ -9,6 +9,7 @@ export type Character = {
     Health: number,
     Defense: number,
     Dexterity: number,
+    CurrentDexterity: number,
     Ultimate: {
         id: number,
         name: string
@@ -32,6 +33,7 @@ export const useCharacterStore = create<CharacterStore>()((set) => ({
         Health: 0,
         Defense: 0,
         Dexterity: 0,
+        CurrentDexterity: 0,
         Ultimate: {
             id: 0,
             name: ""
@@ -50,6 +52,7 @@ export const useCharacterStore = create<CharacterStore>()((set) => ({
                 Health: ageStats.health,
                 Defense: ageStats.defense,
                 Dexterity: ageStats.dexterity,
+                CurrentDexterity: 0,
                 Ultimate: UltimateCalc(data.location.street.number),
                 Level: ageStats.level
             };

@@ -6,7 +6,7 @@ const ActionWindow = (prop:Character) => {
     <div>
         <button onClick={() => Attack(prop.Strength)}>Attack</button>
         <button onClick={() => Defend(prop.Defense)}>Defend</button>
-        <button onClick={() => Ultimate(prop.Ultimate.id, prop.Strength, prop.Level)}>{prop.Ultimate.name}</button>
+        <button onClick={() => Ultimate(prop.Ultimate.id, prop.Strength, prop.Level, prop.Dexterity, prop.CurrentDexterity)}>{prop.Ultimate.name}</button>
     </div>
   )
 }

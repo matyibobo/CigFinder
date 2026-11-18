@@ -9,7 +9,7 @@ const StatsWindow = (prop:Character) => {
         <p><b>Health: {prop.Health}</b></p>
         <p>Strength: {prop.Strength}</p>
         <p>Defense: {prop.Defense}</p>
-        <p>Dexterity: {prop.Dexterity}</p>
+        <p>Dexterity:{prop.CurrentDexterity}/{prop.Dexterity}</p>
     </div>
   )
 }

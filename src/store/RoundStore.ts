@@ -14,8 +14,12 @@ type RoundStore = {
     roundOver: () => void,
     playerHpSet: (value: number) => void,
     enemyHpSet: (value: number) => void,
-    enemyLevelUp : () => void
-    playerLevelUp : () => void
+    enemyLevelUp : () => void,
+    playerLevelUp : () => void,
+    enemyCurrentDexRaise: () => void,
+    playerCurrentDexRaise: () => void,
+    resetPlayerDex: () => void,
+    resetEnemyDex: () => void
 }
 export const useRoundStore = create<RoundStore>()((set) => ({
     player: {
@@ -25,6 +29,7 @@ export const useRoundStore = create<RoundStore>()((set) => ({
         Health: 0,
         Defense: 0,
         Dexterity: 0,
+        CurrentDexterity: 0,
         Ultimate: {
             id: 0,
             name: ""
@@ -38,6 +43,7 @@ export const useRoundStore = create<RoundStore>()((set) => ({
         Health: 0,
         Defense: 0,
         Dexterity: 0,
+        CurrentDexterity: 0,
         Ultimate: {
             id: 0,
             name: ""
@@ -62,6 +68,7 @@ export const useRoundStore = create<RoundStore>()((set) => ({
             Health: ageStats.health,
             Defense: ageStats.defense,
             Dexterity: ageStats.dexterity,
+            CurrentDexterity: 0,
             Ultimate: UltimateCalc(data.location.street.number),
             Level: ageStats.level
         };
@@ -98,6 +105,30 @@ export const useRoundStore = create<RoundStore>()((set) => ({
             Strength: s.player.Strength + 2,
             Defense: s.player.Defense + 1,
             Level: Math.min(50, s.player.Level + 1)
+        }
+    })),
+    playerCurrentDexRaise: () => set((s) => ({
+        player: {
+            ...s.player,
+            CurrentDexterity: Math.min(s.player.Dexterity, s.player.CurrentDexterity + 1)
+        }
+    })),
+    enemyCurrentDexRaise: () => set((s) => ({
+        enemy: {
+            ...s.enemy,
+            CurrentDexterity: Math.min(s.enemy.Dexterity, s.enemy.CurrentDexterity + 1)
+        }
+    })),
+    resetPlayerDex: () => set((s) => ({
+        player: {
+            ...s.player,
+            CurrentDexterity: 0
+        }
+    })),
+    resetEnemyDex: () => set((s) => ({
+        enemy: {
+            ...s.enemy,
+            CurrentDexterity: 0
         }
     }))
 }));
