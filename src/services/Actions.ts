@@ -20,12 +20,10 @@ export function Ultimate(id: number, strength: number, level: number, dex: numbe
             switch (id) {
         case 0:
             Attack(strength*2)
-            state.turnOver()
             break;
         
         case 1:
             Defend(strength*2)
-            state.turnOver()
             break;
         
         case 2:

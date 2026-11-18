@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useCharacterStore } from '../store/CharacterStore'
 import { useRoundStore } from '../store/RoundStore'
 
@@ -7,10 +8,12 @@ const CharacterSelection = () => {
     const loadCharacters = useCharacterStore((s) => s.loadCharacters)
     const selectPlayer = useRoundStore((s) => s.selectPlayer)
     const loadEnemy = useRoundStore((s) => s.loadEnemy)
+    const navigate = useNavigate()
 
-    function selectP(id: number) {
+    async function selectP(id: number) {
         selectPlayer(id)
-        loadEnemy()
+        await loadEnemy()
+        navigate('/battle')
     }
 
     useEffect(() => {
@@ -21,6 +24,7 @@ const CharacterSelection = () => {
 
     return (
         <div>
+            <h1>CigFinder</h1>
             {characters.map((character, index) => (
                 <article key={`${character.Name}-${index}`}>
                     <p>{index}</p>

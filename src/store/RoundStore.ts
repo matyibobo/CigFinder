@@ -7,11 +7,9 @@ type RoundStore = {
     player: Character,
     enemy: Character,
     playerTurn: boolean,
-    round: boolean,
     selectPlayer: (id: number) => void,
     loadEnemy: () => Promise<void>,
     turnOver: () => void,
-    roundOver: () => void,
     playerHpSet: (value: number) => void,
     enemyHpSet: (value: number) => void,
     enemyLevelUp : () => void,
@@ -76,7 +74,6 @@ export const useRoundStore = create<RoundStore>()((set) => ({
         set({ enemy });
     },
     turnOver: () => set((s) => ({ playerTurn: !s.playerTurn })),
-    roundOver: () => set((s) => ({ round: !s.round })),
     enemyHpSet: (value) => set((s) => ({
         enemy: {
             ...s.enemy,

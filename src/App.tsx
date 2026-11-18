@@ -1,13 +1,19 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom"
 import BattleField from "./pages/BattleField"
 import CharacterSelection from "./pages/CharacterSelection"
+import Win from "./pages/Win"
+import Lose from "./pages/Lose"
 
 const App = () => {
   return (
-    <div>
-      <h1>CigFinder</h1>
-      <BattleField/>
-      <CharacterSelection/>
-    </div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<CharacterSelection />} />
+          <Route path="/battle" element={<BattleField/>} />
+          <Route path="/win" element={<Win/>} />
+          <Route path="/lose" element={<Lose/>} />
+        </Routes>
+      </BrowserRouter>
   )
 }
 
