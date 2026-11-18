@@ -16,7 +16,9 @@ const Win = () => {
     async function Continue() {
         const state = useRoundStore.getState()
         await loadEnemy()
-        state.playerLevelUp()
+        if (player.Level < 50) {
+            state.playerLevelUp()
+        }
         state.playerHpSet(20)
         state.turnOver()
         navigate('/battle')
