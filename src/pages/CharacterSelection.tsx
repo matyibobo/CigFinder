@@ -27,7 +27,6 @@ const CharacterSelection = () => {
             <h1>CigFinder</h1>
             {characters.map((character, index) => (
                 <article key={`${character.Name}-${index}`}>
-                    <p>{index}</p>
                     <img src={character.Picture} alt={character.Name} />
                     <h2>{character.Name}</h2>
                     <p>{character.Ultimate.name}</p>
